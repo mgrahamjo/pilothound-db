@@ -171,16 +171,15 @@ module.exports = {
         return db.exec(`
             UPDATE course
             SET
+                school      = "${escape(data.school)}",
                 name        = "${escape(data.name)}",
-                url         = "${escape(data.url)}",
-                email       = "${escape(data.email)}",
-                phone       = "${escape(data.phone)}",
+                price       = "${escape(data.price)}",
                 online      = "${escape(data.online)}",
-                address     = "${escape(data.address)}",
-                logo        = "${escape(data.logo)}",
-                color       = "${escape(data.color)}",
-                partner     = "${escape(data.partner)}",
-                description = "${escape(data.description)}"
+                url         = "${escape(data.url)}",
+                headline    = "${escape(data.headline)}",
+                description = "${escape(data.description)}",
+                features    = "${escape(data.features)}",
+                level       = "${escape(data.level)}"
             WHERE id = ${data.id};
 
             DELETE FROM state_course

@@ -8,12 +8,12 @@ const field = (key, value = '') => swap(key, {
 
     description: () => `<div>
         <label for="description">description</label>
-        <textarea name="description" id="description">${value}</textarea>
+        <textarea name="description" id="description">${value || ''}</textarea>
     </div>`,
 
     features: () => `<div>
         <label for="features">features</label>
-        <textarea name="features" id="features">${value}</textarea>
+        <textarea name="features" id="features">${value || ''}</textarea>
     </div>`,
 
     online: () => `<div>
@@ -32,7 +32,7 @@ const field = (key, value = '') => swap(key, {
 
     default: () => `<div>
         <label for="${key}">${key}</label>
-        <input type="text" name="${key}" id="${key}" value="${value}"/>
+        <input type="text" name="${key}" id="${key}" value="${value || ''}"/>
     </div>`
 
 });
