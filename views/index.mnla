@@ -2,8 +2,8 @@
 <div class="wrapper">
     <h1>Hi.</h1>
     <p><a href="/schools">Search Schools</a></p>
-    <p><a href="/schools/add">Add a School</a></p>
+    <p><a href="/schools/new">Add a School</a></p>
     <p><a href="/courses">Search Courses</a></p>
-    <p><a href="/courses/add">Add a Course</a></p>
+    <p><a href="/courses/new">Add a Course</a></p>
 </div>
 <:include inc/footer:>

@@ -2,7 +2,6 @@ const express = require('express'),
     app = express(),
     manila = require('manila')(),
     sqlite = require('sqlite'),
-    index = require('./controllers/index'),
     bodyParser = require('body-parser'),
     db = require('./util/db');
 

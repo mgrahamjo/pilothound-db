@@ -2,6 +2,12 @@ const db = require('../util/db');
 
 module.exports = (req, res) => {
 
-    db.saveSchool(req.body).then(() => res.redirect('/schools'));
+    const data = req.body;
+
+    data.states = Array.isArray(data.states) ? data.states : [data.states];
+
+    data.online = data.online ? '1' : '';
+
+    db.saveSchool(data).then(() => res.redirect('/schools'));
 
 };

@@ -45,7 +45,7 @@ module.exports = (req, res) => {
             h1: 'New Course',
             path: '/courses',
             fields: [
-                field('id'),
+                field('id', 'new'),
                 field('school'),
                 field('name'),
                 field('price'),

@@ -40,7 +40,7 @@ module.exports = (req, res) => {
             h1: 'New School',
             path: '/schools',
             fields: [
-                field('id'),
+                field('id', 'new'),
                 field('name'),
                 field('url'),
                 field('email'),

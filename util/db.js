@@ -6,10 +6,10 @@ let db;
 
 function insertStateSchool(states, id) {
 
-    return states.map(state => `
+    return states.map(state => state ? `
         INSERT INTO state_school (state, school_id)
         VALUES ("${state}", ${id});
-    `).join('');
+    ` : '').join('');
 }
 
 module.exports = {
@@ -70,9 +70,9 @@ module.exports = {
 
         if (data.id === 'new') {
 
-            return q('SELECT count(*) FROM school').then(count => {
+            return q('SELECT count(*) AS count FROM school').then(count => {
 
-                data.id = count + 1;
+                data.id = count[0].count + 1;
 
                 return db.exec(`
                     INSERT INTO school (
