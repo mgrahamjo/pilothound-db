@@ -1,5 +1,6 @@
 const db = require('../util/db'),
-    swap = require('../util/swap');
+    swap = require('../util/swap'),
+    states = require('../util/states');
 
 const field = (key, value = '') => swap(key, {
 
@@ -18,6 +19,15 @@ const field = (key, value = '') => swap(key, {
     online: () => `<div>
         <label for="online">online</label>
         <input type="checkbox" name="online" id="online" ${value ? 'checked' : ''}/>
+    </div>`,
+
+    states: () => `<div>
+        <label for="states">states</label>
+        <select multiple name="states" id="states">
+            ${states.map(state => `
+                <option value="${state}" ${value.includes(state) ? 'selected' : ''}>${state}</option>
+            `)}
+        </select>
     </div>`,
 
     default: () => `<div>
@@ -50,17 +60,15 @@ module.exports = (req, res) => {
 
     } else {
 
-        db.course(req.params.id).then(data => {
-
-            data = data[0];
+        db.course(req.params.id).then(data =>
 
             res.render('edit', {
                 h1: 'Edit Course',
                 path: '/courses',
                 fields: Object.keys(data).map(key => field(key, data[key]))
-            });
+            })
 
-        });
+        );
 
     }
     

@@ -121,14 +121,14 @@ label {
     color: gray;
 }
 
-input, textarea {
+input, textarea, select {
     padding: 6px;
     font-family: 'Montserrat';
     width: 50%;
     border: 1px solid #eaeaea;
 }
 
-textarea {
+textarea, select {
     height: 100px;
 }
 

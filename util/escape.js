@@ -1,4 +1,4 @@
-module.exports = str => str.replace(/[\0\n\r\b\t\\'"\x1a]/g, s => {
+module.exports = str => str ? str.replace(/[\0\n\r\b\t\\'"\x1a]/g, s => {
     switch (s) {
     case "\0":
         return "\\0";
@@ -19,4 +19,4 @@ module.exports = str => str.replace(/[\0\n\r\b\t\\'"\x1a]/g, s => {
     default:
         return "\\" + s;
     }
-});
+}) : '';
