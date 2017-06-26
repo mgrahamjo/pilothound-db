@@ -4,10 +4,10 @@ let q;
 
 let db;
 
-function insertStateSchool(states, id) {
+function insertStates(type, states, id) {
 
     return states.map(state => state ? `
-        INSERT INTO state_school (state, school_id)
+        INSERT INTO state_${type} (state, ${type}_id)
         VALUES ("${state}", ${id});
     ` : '').join('');
 }
@@ -98,7 +98,7 @@ module.exports = {
                         "${escape(data.partner)}",
                         "${escape(data.description)}");
 
-                    ${insertStateSchool(data.states, data.id)}
+                    ${insertStates('school', data.states, data.id)}
 
                 `).catch(e => console.error(e));
 
@@ -124,7 +124,69 @@ module.exports = {
             DELETE FROM state_school
             WHERE school_id = ${data.id};
 
-            ${insertStateSchool(data.states, data.id)}
+            ${insertStates('school', data.states, data.id)}
+
+        `).catch(e => console.error(e));
+
+    },
+
+    saveCourse: data => {
+
+        if (data.id === 'new') {
+
+            return q('SELECT count(*) AS count FROM course').then(count => {
+
+                data.id = count[0].count + 1;
+
+                return db.exec(`
+                    INSERT INTO course (
+                        school,
+                        name,
+                        price,
+                        online,
+                        url,
+                        headline,
+                        description,
+                        features,
+                        level)
+                    VALUES (
+                        "${escape(data.school)}",
+                        "${escape(data.name)}",
+                        "${escape(data.price)}",
+                        "${escape(data.online)}",
+                        "${escape(data.url)}",
+                        "${escape(data.headline)}",
+                        "${escape(data.description)}",
+                        "${escape(data.features)}",
+                        "${escape(data.level)}");
+
+                    ${insertStates('course', data.states, data.id)}
+
+                `).catch(e => console.error(e));
+
+            });
+
+        }
+
+        return db.exec(`
+            UPDATE course
+            SET
+                name        = "${escape(data.name)}",
+                url         = "${escape(data.url)}",
+                email       = "${escape(data.email)}",
+                phone       = "${escape(data.phone)}",
+                online      = "${escape(data.online)}",
+                address     = "${escape(data.address)}",
+                logo        = "${escape(data.logo)}",
+                color       = "${escape(data.color)}",
+                partner     = "${escape(data.partner)}",
+                description = "${escape(data.description)}"
+            WHERE id = ${data.id};
+
+            DELETE FROM state_course
+            WHERE course_id = ${data.id};
+
+            ${insertStates('course', data.states, data.id)}
 
         `).catch(e => console.error(e));
 
