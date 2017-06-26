@@ -84,7 +84,6 @@ module.exports = {
                         address,
                         logo,
                         color,
-                        partner,
                         description)
                     VALUES (
                         "${escape(data.name)}",
@@ -95,7 +94,6 @@ module.exports = {
                         "${escape(data.address)}",
                         "${escape(data.logo)}",
                         "${escape(data.color)}",
-                        "${escape(data.partner)}",
                         "${escape(data.description)}");
 
                     ${insertStates('school', data.states, data.id)}
@@ -117,7 +115,6 @@ module.exports = {
                 address     = "${escape(data.address)}",
                 logo        = "${escape(data.logo)}",
                 color       = "${escape(data.color)}",
-                partner     = "${escape(data.partner)}",
                 description = "${escape(data.description)}"
             WHERE id = ${data.id};
 

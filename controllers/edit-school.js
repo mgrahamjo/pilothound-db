@@ -49,7 +49,6 @@ module.exports = (req, res) => {
                 field('address'),
                 field('logo'),
                 field('color'),
-                field('partner'),
                 field('description'),
                 field('states', [])
             ]

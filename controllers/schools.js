@@ -7,17 +7,18 @@ module.exports = (req, res) => {
         res.render('search', {
             path: req.path,
             h1: 'Schools',
-            columns: ['id',
-                    'name',
-                    'url',
-                    'email',
-                    'phone',
-                    'online',
-                    'address',
-                    'logo',
-                    'color',
-                    'partner',
-                    'description'],
+            columns: [
+                'id',
+                'name',
+                'url',
+                'email',
+                'phone',
+                'online',
+                'address',
+                'logo',
+                'color',
+                'description'
+            ],
             rows: data.map(row => Object.keys(row).map(key => {
                 return {
                     key,

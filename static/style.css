@@ -73,8 +73,7 @@ button {
     margin: 4px 2px;
 }
 
-.cell-url,
-.cell-partner {
+.cell-url {
     max-width: 210px;
 }
 
